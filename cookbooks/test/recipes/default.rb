@@ -10,43 +10,10 @@ apt_update 'Update the apt cache daily' do
 end
 
 package 'zsh'
-package 'xinit'
-package 'i3'
-package 'terminator'
 package 'git'
 
-directory '/home/vagrant/.i3' do
-  owner 'vagrant'
-  group 'vagrant'
-  mode '0755'
-  action :create
-end
-
-directory '/home/vagrant/.config/terminator' do
-  recursive true
-  owner 'vagrant'
-  group 'vagrant'
-  mode '0755'
-  action :create
-end
-
-template '/home/vagrant/.i3/config' do
-  source 'i3.config.erb'
-  owner 'vagrant'
-  group 'vagrant'
-  mode '0755'
-end
-
-template '/home/vagrant/.profile' do
-  source 'profile.config.erb'
-  owner 'vagrant'
-  group 'vagrant'
-  mode '0755'
-end
-
-template '/home/vagrant/.config/terminator/config' do
-  source 'terminator.config.erb'
-  owner 'vagrant'
-  group 'vagrant'
-  mode '0755'
+reboot 'app_requires_reboot' do
+  action :request_reboot
+  reason 'Need to reboot when the run completes successfully.'
+  delay_mins 0
 end

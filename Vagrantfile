@@ -13,8 +13,11 @@ Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox" do |vb|
      vb.gui = true
    end
-   
+
   config.vm.provision "chef_solo" do |chef|
     chef.add_recipe "test"
+    chef.add_recipe "i3"
+    chef.add_recipe "xinit"
+    chef.add_recipe "terminator"
   end
 end
