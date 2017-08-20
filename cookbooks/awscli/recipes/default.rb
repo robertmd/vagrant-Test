@@ -4,10 +4,13 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
-package 'zsh'
-package 'git'
-package 'chromium-browser'
-package 'vim'
+package 'python-pip'
+package 'python-dev'
+
+execute 'pip install awscli' do
+  command 'pip install --upgrade awscli'
+    only_if 'which pip'
+end
 
 #reboot 'app_requires_reboot' do
 #  action :request_reboot

@@ -20,3 +20,11 @@ template '/home/vagrant/.config/terminator/config' do
   group 'vagrant'
   mode '0755'
 end
+
+directory '/home/vagrant/.config' do
+  owner 'vagrant'
+  group 'vagrant'
+  mode '0755'
+  recursive true
+  action :create
+end

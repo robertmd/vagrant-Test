@@ -7,17 +7,23 @@
 # you're doing.
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "hashicorp/precise64"
   config.omnibus.chef_version = :latest
 
   config.vm.provider "virtualbox" do |vb|
      vb.gui = true
+     vb.memory = 4096
+     vb.cpus = 2
    end
 
   config.vm.provision "chef_solo" do |chef|
+    chef.add_recipe "apt"
     chef.add_recipe "test"
     chef.add_recipe "i3"
     chef.add_recipe "xinit"
     chef.add_recipe "terminator"
+    chef.add_recipe "awscli"
+    chef.add_recipe "scout2"
+    chef.add_recipe "sslyze"
   end
 end
